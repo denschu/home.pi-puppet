@@ -3,14 +3,6 @@ class homepi {
         ensure => "latest"
     }
 
-    package { "mosquitto":
-        ensure => "latest"
-    }
-
-    package { "mosquitto-clients":
-        ensure => "latest"
-    }
-
     exec { "git-clone-wiringpi":
         path    => ['/usr/bin','/usr/local/bin','/opt/local/bin'],
         command => "git clone git://git.drogon.net/wiringPi /home/pi/wiringPi",
@@ -48,16 +40,24 @@ class homepi {
         logoutput => true,
     }
 
+    file { "/home/pi/logs/homepi.log":
+        ensure => "file",
+        owner  => "root",
+        group  => "root",
+        mode   => 777,
+    }
+
     file { "/etc/init.d/homepi":
         owner  => root,
         group  => root,
         mode   => 0755,
-        source => "puppet:///modules/homepi/files/homepi.sh",
+        source => "puppet:///modules/homepi/homepi.sh",
         notify => Service["homepi"],
     }
 
     service { "homepi":
        ensure  => running,
        enable  => true,
+       hasstatus  => false,
     }
 }

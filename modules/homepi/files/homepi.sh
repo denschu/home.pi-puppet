@@ -18,6 +18,8 @@ case "$1" in
   start)
     echo "Starting homepi"
     # run application you want to start
+    #cd /home/pi/home.pi
+    #nohup node app > /home/pi/logs/homepi.log &
     NODE_JS_HOME="/opt/node"
     PATH="$PATH:$NODE_JS_HOME/bin"
     export PATH
@@ -27,6 +29,7 @@ case "$1" in
   stop)
     echo "Stopping homepi"
     # kill application you want to stop
+    #killall node
     NODE_JS_HOME="/opt/node"
     PATH="$PATH:$NODE_JS_HOME/bin"
     export PATH
