@@ -1,5 +1,6 @@
-# Home.Pi Puppet Stuff for the Raspberry Pi
-=============
+# Home.Pi Puppet 
+
+Puppet Manifests for the Raspberry Pi
 
 # Usage
 
