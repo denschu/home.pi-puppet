@@ -40,7 +40,7 @@ class homepi {
         logoutput => true,
     }
 
-    file { "/home/pi/logs/homepi.log":
+    file { "/var/log/homepi.log":
         ensure => "file",
         owner  => "root",
         group  => "root",

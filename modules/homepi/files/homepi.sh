@@ -18,13 +18,16 @@ case "$1" in
   start)
     echo "Starting homepi"
     # run application you want to start
-    #cd /home/pi/home.pi
-    #nohup node app > /home/pi/logs/homepi.log &
     NODE_JS_HOME="/opt/node"
     PATH="$PATH:$NODE_JS_HOME/bin"
     export PATH
-    /opt/node/bin/forever start /home/pi/home.pi/app.js
-    /opt/node/bin/forever start /home/pi/mqtt-exec/mqtt-exec.js -t home/devices/light1/state/set,home/devices/light2/state/set,home/devices/light3/state/set,home/devices/light4/state/set,home/devices/light5/state/set
+    export MQTT_BROKER_URL=mqtt://localhost:1883
+    export NODE_ENV=production
+    /opt/node/bin/forever start /home/pi/home.pi/server.js -l /var/log/homepi.log
+    /opt/node/bin/forever start /home/pi/mqtt-exec/mqtt-exec.js -l /var/log/mqtt-exec.log
+    /opt/node/bin/forever start /home/pi/mqtt-suntimes/mqtt-suntimes.js -l /var/log/mqtt-suntimes.log
+    /opt/node/bin/forever start /home/pi/mqtt-rules/mqtt-rules.js -l /var/log/mqtt-rules.log
+    /opt/node/bin/forever start /home/pi/mqtt-zway/mqtt-zway.js -l /var/log/mqtt-zway.log
     ;;
   stop)
     echo "Stopping homepi"
