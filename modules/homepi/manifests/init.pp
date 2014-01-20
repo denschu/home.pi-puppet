@@ -14,7 +14,7 @@ class homepi {
 
     exec { 'build-wiringpi':
         cwd     => '/home/pi/wiringPi',
-        command => 'build',
+        command => './build',
         onlyif  => 'test ! -x /home/pi/wiringPi/gpio/gpio',
         path    => ['/bin', '/usr/bin', '/usr/local/bin', '/usr/sbin', '/sbin', ],
         creates => '/home/pi/wiringPi/gpio/gpio',
