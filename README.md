@@ -6,7 +6,7 @@ Puppet Manifests for the Raspberry Pi
 
     sudo apt-get install puppet
 
-    git clone https://github.com/denschu/homepi-puppet.git
+    git clone https://github.com/denschu/home.pi-puppet.git
 
  or
  	cd home.pi-puppet
